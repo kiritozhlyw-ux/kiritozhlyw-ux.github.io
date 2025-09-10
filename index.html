@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技术漫游指南</title>
+    <!-- 引入 Tailwind CSS 以实现现代化设计 -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <!-- 引入图标库 Lucide Icons -->
+    <script src="https://unpkg.com/lucide-react@0.395.0/dist/umd/lucide.min.js"></script>
+    <style>
+        /* 简单的页面过渡动画 */
+        .page {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* 确保在 JS 加载前隐藏所有页面 */
+        .page-content { display: none; }
+        .page-content.active { display: block; }
+
+        /* 暗色模式下的代码块背景色微调 */
+        .dark .prose :where(pre):not(:where([class~="not-prose"] *)) {
+            background-color: #1f2937; /* gray-800 */
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
+
+<div id="app" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- 网站头部：包含标题、导航和主题切换按钮 -->
+    <header class="flex justify-between items-center mb-10">
+        <a href="#home" class="text-2xl font-bold text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            技术漫游指南
+        </a>
+        <div class="flex items-center space-x-4">
+            <nav class="hidden sm:flex items-center space-x-5 text-lg">
+                <a href="#archives" class="nav-link hover:text-blue-600 dark:hover:text-blue-400 transition-colors">归档</a>
+                <a href="#about" class="nav-link hover:text-blue-600 dark:hover:text-blue-400 transition-colors">关于</a>
+            </nav>
+            <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                <i data-lucide="sun" id="theme-icon-sun" class="h-6 w-6"></i>
+                <i data-lucide="moon" id="theme-icon-moon" class="h-6 w-6 hidden"></i>
+            </button>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- 首页内容 -->
+        <div id="page-home" class="page-content">
+            <section class="text-center mb-16 page">
+                <h1 class="text-4xl font-extrabold mb-4">你好，我是 Restia 👋</h1>
+                <p class="text-xl text-gray-600 dark:text-gray-400">
+                    欢迎来到我的数字花园。我是一名热衷于分享技术的软件工程师，在这里你可以找到关于编程、云计算和效率工具的文章。
+                </p>
+            </section>
+            <div class="space-y-12">
+                <!-- 文章列表项 1 -->
+                <article class="page">
+                    <h2 class="text-3xl font-bold mb-2">
+                        <a href="#post/my-first-post" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                            Hugo + GitHub Pages：我的第一个静态博客诞生记
+                        </a>
+                    </h2>
+                    <div class="text-gray-500 dark:text-gray-400 mb-4 flex items-center space-x-4">
+                        <time datetime="2025-09-10">2025年9月10日</time>
+                        <span>·</span>
+                        <span>预计阅读 3 分钟</span>
+                    </div>
+                    <p class="text-lg leading-relaxed mb-4">
+                        本文记录了如何从零开始，使用 Hugo 静态网站生成器和 GitHub Pages 免费服务，搭建一个属于自己的、快速且安全的个人博客。
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">建站</span>
+                        <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Hugo</span>
+                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">技术</span>
+                    </div>
+                </article>
+                <!-- 文章列表项 2 -->
+                <article class="page">
+                    <h2 class="text-3xl font-bold mb-2">
+                        <a href="#post/another-post" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                            深入理解 Go 语言中的并发模型
+                        </a>
+                    </h2>
+                    <div class="text-gray-500 dark:text-gray-400 mb-4 flex items-center space-x-4">
+                        <time datetime="2025-09-05">2025年9月5日</time>
+                        <span>·</span>
+                        <span>预计阅读 8 分钟</span>
+                    </div>
+                    <p class="text-lg leading-relaxed mb-4">
+                        Goroutine 和 Channel 是 Go 语言并发编程的两大基石。本文将通过实例深入探讨它们的工作原理，以及如何在实际项目中高效地使用它们。
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-purple-100 text-purple-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300">Go</span>
+                        <span class="bg-red-100 text-red-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">并发编程</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- 文章详情页：我的第一篇文章 -->
+        <div id="page-post/my-first-post" class="page-content">
+            <article class="prose dark:prose-invert lg:prose-xl max-w-none page">
+                <h1>Hugo + GitHub Pages：我的第一个静态博客诞生记</h1>
+                <p class="lead">本文记录了如何从零开始，使用 Hugo 静态网站生成器和 GitHub Pages 免费服务，搭建一个属于自己的、快速且安全的个人博客。</p>
+
+                <h2>为什么选择静态博客？</h2>
+                <p>在当今这个时代，我们有无数种方式来创建博客，比如 WordPress、Ghost 等动态 CMS。但我最终选择了 <strong>Hugo</strong>，一个用 Go 语言编写的静态网站生成器。主要原因有三：</p>
+                <ol>
+                    <li><strong>速度</strong>：快，无与伦比的快！生成的纯 HTML 页面无需数据库查询，加载速度极快。</li>
+                    <li><strong>安全</strong>：没有数据库，没有动态后端，几乎杜绝了常见的网站攻击漏洞。</li>
+                    <li><strong>成本</strong>：我可以将它托管在 <code>GitHub Pages</code> 或 <code>Netlify</code> 上，完全<strong>免费</strong>。</li>
+                </ol>
+
+                <h2>核心步骤回顾</h2>
+                <p>搭建过程可以总结为以下几个关键步骤。</p>
+
+                <h3>1. 环境安装</h3>
+                <p>首先，你需要安装 <code>Git</code> 和 <code>Hugo</code>。在 macOS 上，一条命令就能搞定：</p>
+                <pre><code class="language-bash">brew install hugo</code></pre>
+
+                <h3>2. 创建站点和选择主题</h3>
+                <p>创建新站点非常简单：</p>
+                <pre><code class="language-bash">hugo new site my-blog
+cd my-blog
+git init
+# 添加一个喜欢的主题
+git submodule add https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod</code></pre>
+
+                <h3>3. 撰写内容</h3>
+                <p>这正是我现在正在做的事情！使用 Markdown 语法，我可以专注于内容创作本身，而不用分心于排版。例如，我可以轻松地创建一个列表：</p>
+                <ul>
+                    <li><strong>优点一</strong>：专注写作</li>
+                    <li><strong>优点二</strong>：版本控制</li>
+                    <li><strong>优点三</strong>：跨平台兼容</li>
+                </ul>
+                <blockquote><p>"代码和文字一样，都是思想的表达。"</p></blockquote>
+
+                <h2>总结</h2>
+                <p>从决定到完成，整个过程不到一个小时。拥有一个完全由自己掌控的博客感觉真的很棒。接下来，我计划在这里持续分享我的学习笔记和项目经验。</p>
+            </article>
+        </div>
+
+        <!-- 文章详情页：另一篇文章 (占位) -->
+        <div id="page-post/another-post" class="page-content">
+            <article class="prose dark:prose-invert lg:prose-xl max-w-none page">
+                <h1>深入理解 Go 语言中的并发模型</h1>
+                <p>这是“深入理解 Go 语言中的并发模型”文章的详细内容... 这里是正文占位符。</p>
+            </article>
+        </div>
+
+        <!-- 归档页面 -->
+        <div id="page-archives" class="page-content">
+            <div class="page">
+                <h1 class="text-3xl font-bold mb-8">文章归档</h1>
+                <div class="space-y-6">
+                    <div>
+                        <h2 class="text-2xl font-semibold mb-4 border-b pb-2">2025</h2>
+                        <ul>
+                            <li class="mb-2">
+                                <span class="text-gray-500 dark:text-gray-400">09-10</span>
+                                <a href="#post/my-first-post" class="ml-4 hover:text-blue-600 dark:hover:text-blue-400">Hugo + GitHub Pages：我的第一个静态博客诞生记</a>
+                            </li>
+                            <li class="mb-2">
+                                <span class="text-gray-500 dark:text-gray-400">09-05</span>
+                                <a href="#post/another-post" class="ml-4 hover:text-blue-600 dark:hover:text-blue-400">深入理解 Go 语言中的并发模型</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 关于页面 -->
+        <div id="page-about" class="page-content">
+            <article class="prose dark:prose-invert lg:prose-xl max-w-none page">
+                <h1>关于我</h1>
+                <p>你好，我是 Restia。</p>
+                <p>一名软件工程师，对后端开发和云原生技术充满热情。</p>
+                <p>这个博客是我用来记录和分享技术知识、项目经验以及一些个人思考的地方。我坚信输出是最好的输入。</p>
+
+                <h2>我的技术栈</h2>
+                <ul>
+                    <li><strong>语言</strong>: Go, Python, Java</li>
+                    <li><strong>云服务</strong>: AWS, Google Cloud</li>
+                    <li><strong>数据库</strong>: MySQL, PostgreSQL, Redis</li>
+                </ul>
+                <p>如果你想与我交流，可以通过下面的方式联系我。</p>
+            </article>
+        </div>
+    </main>
+
+    <!-- 网站页脚 -->
+    <footer class="text-center text-gray-500 dark:text-gray-400 mt-16">
+        <p>&copy; 2025 Restia. All Rights Reserved.</p>
+    </footer>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIconSun = document.getElementById('theme-icon-sun');
+        const themeIconMoon = document.getElementById('theme-icon-moon');
+        const mainContent = document.getElementById('main-content');
+        const allPages = mainContent.querySelectorAll('.page-content');
+
+        // --- 主题切换逻辑 ---
+        const applyTheme = (theme) => {
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+                themeIconSun.classList.add('hidden');
+                themeIconMoon.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                themeIconSun.classList.remove('hidden');
+                themeIconMoon.classList.add('hidden');
+            }
+        };
+
+        // 检查本地存储的主题或系统偏好
+        const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        applyTheme(currentTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            const newTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        });
+
+
+        // --- 简单的客户端路由逻辑 ---
+        const router = () => {
+            const hash = window.location.hash || '#home';
+            const pageId = 'page-' + (hash.startsWith('#post/') ? hash.substring(1).replace('/', '-') : hash.substring(1));
+
+            let pageFound = false;
+            allPages.forEach(page => {
+                if (page.id === pageId) {
+                    page.classList.add('active');
+                    pageFound = true;
+                } else {
+                    page.classList.remove('active');
+                }
+            });
+
+            // 如果找不到页面，则显示首页
+            if (!pageFound) {
+                document.getElementById('page-home').classList.add('active');
+            }
+
+            // 每次切换页面时滚动到顶部
+            window.scrollTo(0, 0);
+        };
+
+        // 监听 URL hash 的变化
+        window.addEventListener('hashchange', router);
+        // 页面加载时初始化路由
+        router();
+
+        // 监听所有 a[href^="#"] 的点击事件，确保路由正常工作
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                // 延迟一小段时间执行路由，以确保 hash 已更新
+                setTimeout(router, 0);
+            });
+        });
+
+        // 激活 Lucide 图标
+        lucide.createIcons();
+    });
+</script>
+</body>
+</html>
